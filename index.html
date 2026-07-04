@@ -1,0 +1,631 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Murali Krishna Chandranegudam | Embedded Systems & RTL Design Portfolio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <style>
+            /* Premium Engineering Aesthetic (Vercel & GitHub Developer Mode Inspired) */
+            * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+            body { 
+                font-family: 'Inter', sans-serif; 
+                background-color: #0d1117; /* GitHub Dark Base */
+                color: #c9d1d9; /* Clean text visibility */
+                overflow-x: hidden;
+                line-height: 1.6;
+            }
+            h1, h2, h3, h4, .nav-logo { 
+                font-family: 'Space Grotesk', sans-serif; 
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: #f0f6fc;
+            }
+            code, pre, .mono {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.85em;
+            }
+            a { color: inherit; text-decoration: none; }
+
+            /* Grid & Section Spacing */
+            section {
+                padding: 6rem 4rem;
+                border-bottom: 1px solid #21262d;
+            }
+            .bg-dark-primary { background-color: #0d1117; }
+            .bg-dark-secondary { background-color: #161b22; }
+            .container { max-width: 1100px; margin: 0 auto; }
+
+            /* Engineering Layout Section Headers */
+            .section-header {
+                margin-bottom: 3.5rem;
+            }
+            .section-header h2 {
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #58a6ff; /* Clean Blue Accent */
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            .section-header h2::after {
+                content: '';
+                flex-grow: 1;
+                height: 1px;
+                background: #21262d;
+                margin-left: 1rem;
+            }
+
+            /* Minimal Navigation */
+            nav {
+                display: flex; justify-content: space-between; align-items: center;
+                padding: 1.25rem 4rem; position: sticky; top: 0; background-color: rgba(13, 17, 23, 0.85); 
+                backdrop-filter: blur(8px); border-bottom: 1px solid #21262d; z-index: 100;
+            }
+            .nav-logo { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: #f0f6fc; } 
+            .nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; }
+            .nav-links a { font-size: 0.8rem; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+            .nav-links a:hover { color: #58a6ff; }
+
+            /* Hero Layout Components */
+            .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
+            .hero-title-container { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.5rem; }
+            .hero-profile-img { 
+    width: 120px;          /* Distinct width */
+    height: 120px;         /* Identical height prevents stretching */
+    border-radius: 8px;    /* Professional square layout with slight corner rounding */
+    object-fit: cover;     /* Keeps image aspect ratio perfect */
+    border: 1px solid #30363d; 
+    flex-shrink: 0;        /* Prevents the image container from squishing */
+}
+            .hero-text h1 { font-size: 3rem; font-weight: 700; line-height: 1.1; color: #f0f6fc; }
+            .hero-subtitle { font-size: 1.25rem; color: #8b949e; margin-bottom: 1.5rem; font-weight: 500; }
+            .hero-description { font-size: 1rem; color: #8b949e; margin-bottom: 2rem; max-width: 600px; text-align: justify;  }
+            
+            /* Information Sidebar Panel */
+            .status-panel { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 2rem; }
+            .status-block { margin-bottom: 1.25rem; }
+            .status-block:last-child { margin-bottom: 0; }
+            .status-label { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+            .status-value { font-size: 0.95rem; color: #c9d1d9; font-weight: 500; text-align: justify;  }
+
+            /* Skill Matrix Styling Group */
+            .badge-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+            .tech-badge {
+                background: #21262d; border: 1px solid #30363d;
+                color: #c9d1d9; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.75rem;
+                font-weight: 600; font-family: 'JetBrains Mono', monospace;
+            }
+
+            /* Clean Multi-Layout Project Layout */
+            .projects-column { display: flex; flex-direction: column; gap: 3rem; }
+            .project-card {
+                background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 2.5rem;
+                transition: border-color 0.2s;
+            }
+            .project-card:hover { border-color: #58a6ff; }
+            .project-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; border-bottom: 1px solid #21262d; padding-bottom: 1rem; }
+            .project-card h3 { font-size: 1.4rem; color: #f0f6fc; }
+            .project-meta-tag { font-size: 0.8rem; color: #58a6ff; font-weight: 500; }
+            
+            /* Clean Project Content Block Settings */
+            .project-layout-grid { display: flex; flex-direction: column; gap: 1rem; font-size: 0.95rem; }
+            .project-row { display: grid; grid-template-columns: 140px 1fr; }
+            .row-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #8b949e; text-transform: uppercase; padding-top: 0.2rem; }
+            .row-content { color: #c9d1d9; text-align: justify;  }
+            .row-content ul { list-style-position: inside; padding-left: 0.25rem; }
+            .row-content li { margin-bottom: 0.25rem; }
+
+            /* Timeline Experience Layout Cards */
+            .timeline-container { display: flex; flex-direction: column; gap: 2.5rem; }
+            .timeline-card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 2.5rem; }
+            .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; border-bottom: 1px solid #21262d; padding-bottom: 1rem; }
+            .timeline-title h3 { font-size: 1.25rem; color: #f0f6fc; }
+            .timeline-company { font-size: 0.95rem; color: #58a6ff; margin-top: 0.25rem; font-weight: 500; }
+            .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #8b949e; background: #21262d; padding: 0.25rem 0.5rem; border-radius: 4px; }
+
+            /* Categorized Skills Structural Cards */
+            .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+            .skills-card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 1.75rem; }
+            .skills-card h3 { font-size: 0.85rem; color: #f0f6fc; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.25rem; border-bottom: 1px solid #21262d; padding-bottom: 0.5rem; }
+            .skills-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+            .skills-list li { font-size: 0.9rem; color: #8b949e; display: flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+            .skills-list li::before { content: '->'; color: #58a6ff; }
+
+            /* Professional Buttons UI */
+            .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+            .btn {
+                background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
+                padding: 0.6rem 1.2rem; border-radius: 6px; font-size: 0.85rem;
+                font-weight: 600; transition: all 0.2s; font-family: 'Space Grotesk', sans-serif;
+                display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;
+            }
+            .btn:hover { background: #30363d; border-color: #8b949e; color: #f0f6fc; }
+            .btn-primary { background: #238636; border-color: #2ea44f; color: #fff; }
+            .btn-primary:hover { background: #2ea44f; border-color: #2ea44f; color: #fff; }
+
+            /* Production Footer */
+            footer { padding: 3rem; background: #0d1117; border-top: 1px solid #21262d; text-align: center; font-size: 0.8rem; color: #8b949e; font-family: 'JetBrains Mono', monospace; }
+
+            @media (max-width: 992px) {
+                .hero-grid, .project-card, .skills-grid { grid-template-columns: 1fr; gap: 3rem; }
+                .project-row { grid-template-columns: 1fr; gap: 0.25rem; }
+                .row-label { margin-top: 0.5rem; }
+                section, nav { padding: 2rem; }
+                .hero-text h1 { font-size: 2.25rem; }
+                .hero-title-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav>
+            <div class="nav-logo">MURALI KRISHNA CHANDRANEGUDAM</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="bg-dark-primary">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <div class="hero-title-container">
+                        <h1>Murali Krishna Chandranegudam</h1>
+                        <img src="0-02 (3).jpg" alt="Murali Krishna Profile Photo" class="hero-profile-img" />
+                    </div>
+                    <div class="hero-subtitle">Embedded Systems Engineer</div>
+                    <div class="badge-container">
+                        <span class="tech-badge">RTL Design</span>
+                        <span class="tech-badge">FPGA</span>
+                        <span class="tech-badge">Functional Verification</span>
+                        <span class="tech-badge">Embedded C</span>
+                    </div>
+                    
+                    <p class="hero-description">
+                        Deeply committed to advancing education and engineering contributions in embedded computing systems. Experienced in digital systems architecture, peripheral device interfacing, firmware debugging, and electronics validation workflows.
+                    </p>
+                    
+                    <div class="btn-group">
+                        <a href="mailto:muralikrishna.chandranegudam@gmail.com" class="btn btn-primary">Download Resume</a>
+                        <a href="https://github.com/murali140904" target="_blank" class="btn">GitHub Profile</a>
+                        <a href="https://www.linkedin.com/in/murali-krishna-chandranegudam-482ab1295/" target="_blank" class="btn">LinkedIn Profile</a>
+                    </div>
+                </div>
+                
+                <div class="status-panel">
+                    <div class="status-block">
+                        <div class="status-label">Currently Pursuing</div>
+                        <div class="status-value">M.Sc. Embedded Computing Systems<br>RPTU Kaiserslautern, Germany </div>
+                    </div>
+                    <div class="status-block">
+                        <div class="status-label">Professional Background</div>
+                        <div class="status-value">
+                            • Embedded Systems Intern | Emertxe <br>
+                            • Embedded Developer Intern | AICTE + Microchip 
+                        </div>
+                    </div>
+                    <div class="status-block">
+                        <div class="status-label">Location Focus</div>
+                        <div class="status-value">Kaiserslautern, Germany </div>
+                    </div>
+                    <div class="status-block">
+                        <div class="status-label">Languages</div>
+                        <div class="status-value">English (B2) &bull; German (A1) </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="bg-dark-secondary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Case Studies</h2>
+                </div>
+                
+                <div class="projects-column">
+                    <div class="project-card">
+                        <div class="project-title-row">
+                            <h3>1. RV32I Pipelined Core Processor</h3>
+                            <span class="project-meta-tag">Digital Systems Class Project </span>
+                        </div>
+                        
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Project Overview</div>
+                                <div class="row-content">Designed and implemented structural digital logic blocks to configure a multi-stage 32-bit RISC-V pipelined core processor.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Key Features</div>
+                                <div class="row-content">Integrated hardware execution logic featuring arithmetic logic units (ALU), pipeline registers, hazard detection circuitry, branch instructions, and an active Branch Target Buffer (BTB).</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies</div>
+                                <div class="row-content mono" style="color: #58a6ff;">Chisel, Scala, SystemVerilog, sbt, Digital Design Flow </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Challenges</div>
+                                <div class="row-content">Resolving structural/data hazards and pipeline control disruptions caused by branch path instruction updates during continuous execution cycles.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Outcome</div>
+                                <div class="row-content">Successfully created and verified working hazard mitigation logic blocks, data forwarding units, and branch prediction state arrays using Chisel-based testbench structures.</div>
+                            </div>
+                            <div class="project-row" style="margin-top: 1rem;">
+                                <div class="row-label"></div>
+                                <div class="row-content">
+                                    <a href="https://github.com/murali140904" target="_blank" class="btn">Access Repository &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title-row">
+                            <h3>2. Real-Time Embedded Microwave Oven Model</h3>
+                            <span class="project-meta-tag">Emertxe Firmware Project </span>
+                        </div>
+                        
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Project Overview</div>
+                                <div class="row-content">Developed and validated micro-controlled firmware routines to model a functional microwave oven system with various user-selectable operational settings.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Key Features</div>
+                                <div class="row-content">Implements discrete peripheral controls, real-time counter routines, state-machine tracking logic, and a Human-Machine Interface (HMI) screen matrix.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies</div>
+                                <div class="row-content mono" style="color: #58a6ff;">Embedded C, MPLAB X IDE, PIC & ARM Microcontroller Platforms </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Challenges</div>
+                                <div class="row-content">Structuring state transitions to process real-time tactile inputs seamlessly alongside background interrupt routines without introducing deadlocks.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Outcome</div>
+                                <div class="row-content">Compiled, simulated, and deployed verified firmware algorithms to handle reliable peripheral device communication using MPLAB X IDE debuggers.</div>
+                            </div>
+                            <div class="project-row" style="margin-top: 1rem;">
+                                <div class="row-label"></div>
+                                <div class="row-content">
+                                    <a href="https://github.com/murali140904" target="_blank" class="btn">Access Repository &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title-row">
+                            <h3>3. Zigbee Wireless Multi-Motor Synchronization</h3>
+                            <span class="project-meta-tag">Academic Engineering Design </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Project Overview</div>
+                                <div class="row-content">Designed a wireless coordination channel framework to communicate and synchronize real-time velocity metrics across multiple distributed AC induction motor nodes.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies</div>
+                                <div class="row-content mono" style="color: #58a6ff;">Zigbee Technology, AC Induction Motors, MATLAB, Wireless System Layout </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title-row">
+                            <h3>4. DC-DC Converter Road-Load Emulator</h3>
+                            <span class="project-meta-tag">Power Electronics Simulation </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Project Overview</div>
+                                <div class="row-content">Constructed and simulated high-precision DC-DC electronic power converter topologies to emulate realistic vehicular road-load behaviors applied to a six-phase induction motor system.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies</div>
+                                <div class="row-content mono" style="color: #58a6ff;">MATLAB, Simulink, Circuit Simulation, Power Electronics </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-title-row">
+                            <h3>5. E-Waste Facility Locator</h3>
+                            <span class="project-meta-tag">Smart India Hackathon Development </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Project Overview</div>
+                                <div class="row-content">Developed a location-based application routing layout enabling real-time discovery and path calculation to electronic waste processing centers.</div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies</div>
+                                <div class="row-content mono" style="color: #58a6ff;">Location-Based Services, Software Application Design </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="bg-dark-primary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Technical Skill Domains</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skills-card">
+                        <h3>Languages & HDLs</h3>
+                        <ul class="skills-list">
+                            <li>Verilog </li>
+                            <li>SystemVerilog </li>
+                            <li>Chisel </li>
+                            <li>Scala </li>
+                            <li>Embedded C </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Verification & Methods</h3>
+                        <ul class="skills-list">
+                            <li>RTL Design Flow </li>
+                            <li>Functional Verification </li>
+                            <li>Testbench Development </li>
+                            <li>UVM (Basics) </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Peripherals & Hardware</h3>
+                        <ul class="skills-list">
+                            <li>GPIO Interfaces </li>
+                            <li>Timers & Counters </li>
+                            <li>Interrupt Vectors </li>
+                            <li>Microchip Architectures </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Protocols</h3>
+                        <ul class="skills-list">
+                            <li>UART </li>
+                            <li>SPI </li>
+                            <li>I2C </li>
+                            <li>AXI4-Lite (Basics) </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>EDA & Synthesis Tools</h3>
+                        <ul class="skills-list">
+                            <li>Xilinx Vivado </li>
+                            <li>MPLAB X IDE </li>
+                            <li>Keil µVision </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Simulation & Analytics</h3>
+                        <ul class="skills-list">
+                            <li>ModelSim </li>
+                            <li>GTKWave </li>
+                            <li>PICSimLab </li>
+                            <li>MATLAB / Simulink </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Infrastructure</h3>
+                        <ul class="skills-list">
+                            <li>Linux Environments </li>
+                            <li>Git Control Suites </li>
+                        </ul>
+                    </div>
+                    <div class="skills-card">
+                        <h3>Industry Standards</h3>
+                        <ul class="skills-list">
+                            <li>IEEE 1364 (Verilog) </li>
+                            <li>IEEE 1800 (SV) </li>
+                            <li>FPGA Design Flow </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="bg-dark-secondary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Professional Experience</h2>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Embedded Systems Engineer - Internship</h3>
+                                <div class="timeline-company">Emertxe Information Technologies Private Limited</div>
+                            </div>
+                            <span class="timeline-date">Jan 2025 - Mar 2025 </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Responsibilities</div>
+                                <div class="row-content">
+                                    <ul>
+                                        <li>Applied microcontroller design methods to develop, verify, and document firmware models using MPLAB X IDE.</li>
+                                        <li>Programmed embedded state-machine routines and control patterns across PIC and ARM microcontroller chips.</li>
+                                        <li>Conducted firmware tracking, signal logging, and debugging iterations to evaluate hardware peripheral driver reliability.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies Used</div>
+                                <div class="row-content mono">MPLAB X IDE, Embedded C, PIC & ARM Platforms, Peripheral Interfacing </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Skills Learned</div>
+                                <div class="row-content">Firmware Debugging, Finite State Machine Configuration, System Testing and Functional Verification.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Embedded System Developer - Internship</h3>
+                                <div class="timeline-company">AICTE - EduSkills Foundation (Supported by Microchip Technology) </div>
+                            </div>
+                            <span class="timeline-date">April 2024 - June 2025 </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Responsibilities</div>
+                                <div class="row-content">
+                                    <ul>
+                                        <li>Engineered embedded source scripts using Embedded C to map functional device communication peripheral chains.</li>
+                                        <li>Compiled and analyzed code files using MPLAB XC8/XC16 toolchains to process hardware signal data.</li>
+                                        <li>Performed validation analysis on interrupt structures, timer registers, and simulated hardware interface behaviors.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies Used</div>
+                                <div class="row-content mono">Embedded C, Microchip MCUs, MPLAB XC8/XC16, UART, SPI, I2C, GPIO, Timers, Interrupt Handling </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Skills Learned</div>
+                                <div class="row-content">Microcontroller Interfacing, Hardware-in-the-loop Logic Emulation, Standard Low-level Communication Routing.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Electronics Validation Engineer - Internship</h3>
+                                <div class="timeline-company">Resolute Group of Companies </div>
+                            </div>
+                            <span class="timeline-date">Jan 2022 - June 2022 </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Responsibilities</div>
+                                <div class="row-content">
+                                    <ul>
+                                        <li>Conducted physical testing and safety checking updates within the manufacturing division tracking LED/LCD devices.</li>
+                                        <li>Inspected multi-layered printed circuit boards (PCB) to debug component anomalies and structural connection errors.</li>
+                                        <li>Utilized bench testing systems like oscilloscopes and digital multimeters to trace operational power distributions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Technologies Used</div>
+                                <div class="row-content mono">Oscilloscopes, Digital Multimeters (DMM), PCB Inspection, Hardware Troubleshooting </div>
+                            </div>
+                            <div class="project-row">
+                                <div class="row-label">Skills Learned</div>
+                                <div class="row-content">Hardware Troubleshooting, Calibration Metrics, Signal Quality Evaluation and Validation.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="bg-dark-primary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Education</h2>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Master of Science in Embedded Computing Systems</h3>
+                                <div class="timeline-company">Rhineland-Palatinate Technical University of Kaiserslautern-Landau (RPTU) </div>
+                            </div>
+                            <span class="timeline-date">April 2026 - Current </span>
+                        </div>
+                        <div class="project-layout-grid">
+                            <div class="project-row">
+                                <div class="row-label">Coursework</div>
+                                <div class="row-content">Architecture of Digital Systems, FPGA-based Hardware Systems (FPGAHS), Embedded Intelligence, Real-Time Systems, Foundations of Software Engineering, German A1.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Bachelor of Technology in Electrical and Electronics Engineering</h3>
+                                <div class="timeline-company">Graduated with Grade Tier: 1.4 &bull; Hyderabad, India </div>
+                            </div>
+                            <span class="timeline-date">June 2022 - June 2025 </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3.5rem; background: #161b22; border: 1px solid #30363d; padding: 2rem; border-radius: 6px;">
+                    <div class="status-label" style="margin-bottom: 1rem;">Current Independent Learning Paths</div>
+                    <div class="badge-container" style="margin-bottom: 0;">
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.02); color: #fff;">Advanced RTL Design</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.02); color: #fff;">FPGA Development</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.02); color: #fff;">UVM Verification</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.02); color: #fff;">RISC-V Architecture</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.02); color: #fff;">Digital System Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-dark-secondary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Interface & Connection</h2>
+                </div>
+                
+                <div class="hero-grid" style="align-items: center;">
+                    <div>
+                        <h3 style="font-size: 1.35rem; margin-bottom: 1rem;">Available for Internship and Full-Time Opportunities in Germany</h3>
+                        <p class="hero-description" style="margin-bottom: 0;">
+                            Open to recruiter reviews concerning digital design verification roles, firmware programming tasks, or structural hardware engineering design validations.
+                        </p>
+                    </div>
+                    
+                    <div class="status-panel" style="background: #0d1117;">
+                        <div class="status-block">
+                            <div class="status-label">Email Gateway</div>
+                            <div class="status-value mono"><a href="mailto:muralikrishna.chandranegudam@gmail.com" style="color: #58a6ff;">muralikrishna.chandranegudam@gmail.com</a></div>
+                        </div>
+                        <div class="status-block">
+                            <div class="status-label">LinkedIn Networking</div>
+                            <div class="status-value mono"><a href="https://www.linkedin.com/in/murali-krishna-chandranegudam-482ab1295/" target="_blank" style="color: #58a6ff;">linkedin.com/in/murali-krishna-chandranegudam</a></div>
+                        </div>
+                        <div class="status-block">
+                            <div class="status-label">GitHub Environment</div>
+                            <div class="status-value mono"><a href="https://github.com/murali140904" target="_blank" style="color: #58a6ff;">github.com/murali140904</a></div>
+                        </div>
+                        <div class="status-block">
+                            <div class="status-label">Location</div>
+                            <div class="status-value">Kaiserslautern, Germany </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                MURALI KRISHNA CHANDRANEGUDAM &copy; 2026. PRODUCTION PROFILE BUILT ON VERIFIABLE ENGINEERING EXPERIENCE.
+            </div>
+        </footer>
+
+    </body>
+</html>
